@@ -6,7 +6,7 @@
 /*   By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 15:13:31 by ddevico           #+#    #+#             */
-/*   Updated: 2017/11/12 15:20:05 by davydevico       ###   ########.fr       */
+/*   Updated: 2017/11/12 15:42:43 by davydevico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,11 +140,17 @@ static void test_ft_puts (void)
 static void test_ft_strlen(void)
 {
 	//char str[6] = "salut";
-	char str2[6] = "coucou";
+	//char str2[6] = "coucou";
 
 	print_prog("ft_strlen");
 	//printf("str = %s ==> len = %d\n", str, ft_strlen(str));
-	printf("str = %s ==> len = %d\n", str2, ft_strlen(str2));
+	//printf("str = %s ==> len = %d\n", str2, ft_strlen(str2));
+	int test_len = 10 * 1000 * 1000;
+	char str[test_len];
+
+	//memset(str, 'a', test_len);
+	str[test_len - 1] = '\0';
+	//printf("%d\n", ft_strlen(str));
 }
 
 
