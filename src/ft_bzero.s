@@ -6,7 +6,7 @@
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/04/13 19:38:52 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/09 10:42:01 by ddevico          ###   ########.fr        ;
+;    Updated: 2017/11/10 11:14:31 by davydevico       ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -14,6 +14,8 @@ section .text
 global _ft_bzero
 
 _ft_bzero:
+	push rbp
+	mov rbp, rsp
 	cmp rdi, 0
 	jz end
 	mov rbx, rdi
@@ -28,4 +30,5 @@ bzero:
 	jmp bzero
 
 end:
+	leave
 	ret

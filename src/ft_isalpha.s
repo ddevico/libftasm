@@ -6,7 +6,7 @@
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/04/13 23:39:14 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/07 16:11:46 by ddevico          ###   ########.fr        ;
+;    Updated: 2017/11/10 11:16:53 by davydevico       ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -14,6 +14,8 @@ global _ft_isalpha
 
 section .text
 _ft_isalpha:
+	push rbp
+	mov rbp, rsp
 	cmp rdi, 65
 	jl no
 	cmp rdi, 122
@@ -34,4 +36,5 @@ no:
 	jmp return
 
 return:
+	leave
 	ret

@@ -6,23 +6,26 @@
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2017/11/05 19:39:39 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/09 13:18:13 by ddevico          ###   ########.fr        ;
+;    Updated: 2017/11/10 11:17:57 by davydevico       ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-global _ft_toupper
+global  _ft_toupper
+extern  _ft_islower
 
 section .text
 _ft_toupper:
-	mov rax, rdi
-	cmp	rdi, 97
-	jl return
-	cmp	rdi, 122
-	jg return
+	push rbp
+	mov rbp, rsp
+    call _ft_islower
+    cmp rax, 1
+    je sub
+    mov rax, rdi
+	leave
+    ret
 
-upper:
-	sub rax, 32
-	jmp return
-
-return:
-	ret
+sub:
+    sub rdi, 32
+    mov rax, rdi
+	leave
+    ret

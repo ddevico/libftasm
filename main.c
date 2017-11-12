@@ -6,7 +6,7 @@
 /*   By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 15:13:31 by ddevico           #+#    #+#             */
-/*   Updated: 2017/11/09 11:07:00 by ddevico          ###   ########.fr       */
+/*   Updated: 2017/11/12 15:00:44 by davydevico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ static void test_ft_memcpy(void)
 	printf("b = %d\n", b);
 }
 
-/*void test_ft_strdup (void)
+void test_ft_strdup (void)
 {
 	char * tata = strdup("yolo");
 	char * toto = ft_strdup(tata);
@@ -213,7 +213,72 @@ static void test_ft_memcpy(void)
 	printf("titi = %s\n", titi);
 	titi = ft_strdup(NULL);
 	printf("titi = %s\n", titi);
-}*/
+}
+
+void    test_ft_strcpy(void)
+{
+    char    str1[42] = "tamer";
+    char    str2[42] = "baba au whum";
+
+	print_prog("ft_strcpy");
+    printf("s1: %s\n", str1);
+    printf("s2: %s\n", str2);
+    printf("~>[_ft_strcpy]: %s\n", ft_strcpy(str1, str2));
+    printf("----->[strcpy]: %s\n", strcpy(str1, str2));
+}
+
+static void    test_ft_strchr(void)
+{
+    char    s[42]= "baba au whum";
+
+	print_prog("ft_strcpy");
+    printf("s: %s\tc: %c\n", s, 'w');
+    printf("~>[_ft_strchr]: %s\n", ft_strchr(s, 'w'));
+    printf("s: %s\tc: %c\n", "asm 64 bits", 'w');
+    printf("~>[_ft_strchr]: %s\n", ft_strchr("asm 64 bits", 'w'));
+}
+
+static void test_ft_isupper(void)
+{
+	print_prog("ft_isupper");
+	printf("%c --> %d\n", 'A', ft_isupper('A'));
+	printf("%c --> %d\n", 'a', ft_isupper('a'));
+}
+
+static void test_ft_islower(void)
+{
+	print_prog("ft_islower");
+	printf("%c --> %d\n", 'a', ft_islower('a'));
+	printf("%c --> %d\n", 'A', ft_islower('A'));
+}
+
+static void test_ft_putchar(void)
+{
+	print_prog("ft_putchar");
+	ft_putchar('D');
+	ft_putchar('a');
+	ft_putchar('v');
+	ft_putchar('y');
+	ft_putchar('\n');
+}
+
+void test_ft_abs (void)
+{
+	print_prog("ft_abs");
+	printf("abs of %d ? ==> %d\n", 10, ft_abs(10));
+	printf("abs of %d ? ==> %d\n", -10, ft_abs(-10));
+}
+
+void test_ft_swap (void)
+{
+	int a = 21;
+	int b = 42;
+
+	print_prog("ft_swap");
+	printf("%d %d\n", a, b);
+	ft_swap(&a, &b);
+	printf("%d %d\n", a, b);
+}
 
 int		main(void)
 {
@@ -230,5 +295,12 @@ int		main(void)
 	test_ft_strlen();
 	test_ft_memset();
 	test_ft_memcpy();
-	//test_ft_strdup();
+	test_ft_strdup();
+	test_ft_strcpy();
+	test_ft_strchr();
+	test_ft_isupper();
+	test_ft_islower();
+	test_ft_putchar();
+	test_ft_abs();
+	test_ft_swap();
 }

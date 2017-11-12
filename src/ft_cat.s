@@ -6,7 +6,7 @@
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/04/13 23:39:14 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/09 11:42:32 by ddevico          ###   ########.fr        ;
+;    Updated: 2017/11/10 11:15:04 by davydevico       ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -25,6 +25,8 @@ section .data
 section .text
 
 _ft_cat:
+	push rbp
+	mov rbp, rsp
 	push rdi
 	lea rsi, [rel buffer]
 	mov rdx, bufsize
@@ -45,7 +47,9 @@ print:
 
 err:
 	pop rdi
+	leave
 	mov rax, 1
 
 end:
+	leave
 	ret

@@ -6,7 +6,7 @@
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/04/13 23:39:14 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/07 20:44:36 by davydevico       ###   ########.fr        ;
+;    Updated: 2017/11/10 11:20:44 by davydevico       ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -14,6 +14,8 @@ section .text
 	global _ft_strcat
 
 _ft_strcat:
+	push rbp
+	mov rbp, rsp
 	push rbx
 	mov rbx, rdi
 
@@ -36,4 +38,5 @@ end:
 	mov byte [rbx], 0
 	mov rax, rdi
 	pop rbx
+	leave
 	ret

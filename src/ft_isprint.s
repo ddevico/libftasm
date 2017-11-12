@@ -6,7 +6,7 @@
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/04/15 17:03:24 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/07 16:11:48 by ddevico          ###   ########.fr        ;
+;    Updated: 2017/11/10 11:19:24 by davydevico       ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -14,6 +14,8 @@ global _ft_isprint
 
 section .text
 _ft_isprint:
+	push rbp
+	mov rbp, rsp
 	cmp rdi, 32
 	jl no
 	cmp rdi, 126
@@ -28,4 +30,5 @@ no:
 	jmp return
 
 return:
+	leave
 	ret

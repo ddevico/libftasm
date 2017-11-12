@@ -1,34 +1,24 @@
 ; **************************************************************************** ;
 ;                                                                              ;
 ;                                                         :::      ::::::::    ;
-;    ft_isdigit.s                                       :+:      :+:    :+:    ;
+;    ft_abs.s                                           :+:      :+:    :+:    ;
 ;                                                     +:+ +:+         +:+      ;
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
-;    Created: 2015/04/13 23:39:14 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/10 11:15:57 by davydevico       ###   ########.fr        ;
+;    Created: 2015/04/13 19:38:52 by ddevico           #+#    #+#              ;
+;    Updated: 2017/11/12 14:43:17 by davydevico       ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-global _ft_isdigit
-
 section .text
-_ft_isdigit:
-	push rbp
-	mov rbp, rsp
-	cmp rdi, 48
-	jl no
-	cmp rdi, 57
-	jg no
+global _ft_abs
 
-yes:
-	mov rax, 1
-	jmp return
+_ft_abs:
+	mov rax, rdi
+	cmp eax, 0
+	jl neg
+	ret
 
-no:
-	mov rax, 0
-	jmp return
-
-return:
-	leave
+neg:
+	neg rax
 	ret

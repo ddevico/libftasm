@@ -6,7 +6,7 @@
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2017/11/05 19:39:39 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/07 16:11:51 by ddevico          ###   ########.fr        ;
+;    Updated: 2017/11/10 11:20:34 by davydevico       ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -18,6 +18,8 @@ section .data
 
 section .text
 _ft_puts:
+	push rbp
+	mov rbp, rsp
 	cmp rdi, 0
 	je aff_null
 	xor rcx, rcx
@@ -42,8 +44,8 @@ return:
 	mov rdx, 1 ; length
 	mov rax, 0x2000004 ; write
 	syscall
-
 	mov rax, 10
+	leave
 	ret
 
 aff_null:

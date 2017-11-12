@@ -6,7 +6,7 @@
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/04/13 23:39:14 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/08 15:07:23 by davydevico       ###   ########.fr        ;
+;    Updated: 2017/11/10 11:19:45 by davydevico       ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -14,6 +14,8 @@ global _ft_memcpy
 
 section .text
 _ft_memcpy:
+	push rbp
+	mov rbp, rsp
 	mov r10, rdi	;save void *s addr
 	mov rcx, rdx	;copy size in cmpt for stosb
 	cmp	rcx, 0		;check if size is 0
@@ -27,4 +29,5 @@ _ft_memcpy:
 
 return:
 	mov rax, r10
+	leave
 	ret

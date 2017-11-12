@@ -1,34 +1,29 @@
 ; **************************************************************************** ;
 ;                                                                              ;
 ;                                                         :::      ::::::::    ;
-;    ft_isdigit.s                                       :+:      :+:    :+:    ;
+;    ft_strcpy.s                                        :+:      :+:    :+:    ;
 ;                                                     +:+ +:+         +:+      ;
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
-;    Created: 2015/04/13 23:39:14 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/10 11:15:57 by davydevico       ###   ########.fr        ;
+;    Created: 2015/04/15 17:03:24 by ddevico           #+#    #+#              ;
+;    Updated: 2017/11/10 11:21:01 by davydevico       ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-global _ft_isdigit
+extern	_ft_strlen
+extern	_ft_memcpy
 
 section .text
-_ft_isdigit:
+global	_ft_strcpy
+
+_ft_strcpy:
 	push rbp
 	mov rbp, rsp
-	cmp rdi, 48
-	jl no
-	cmp rdi, 57
-	jg no
-
-yes:
-	mov rax, 1
-	jmp return
-
-no:
-	mov rax, 0
-	jmp return
-
-return:
+	mov r12, rdi
+	mov rdi, rsi
+	call _ft_strlen
+	mov rdx, rax
+	mov rdi, r12
+	call _ft_memcpy
 	leave
 	ret
