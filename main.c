@@ -6,7 +6,7 @@
 /*   By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 15:13:31 by ddevico           #+#    #+#             */
-/*   Updated: 2017/11/12 15:00:44 by davydevico       ###   ########.fr       */
+/*   Updated: 2017/11/12 15:20:05 by davydevico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void test_ft_isprint (void)
 
 static void test_ft_bzero (void)
 {
-	char str[4] = "jui";
+	char str[6] = "delete";
 
 	print_prog("ft_bzero");
 	printf("str[0] = %d\n", str[0]);
@@ -86,27 +86,26 @@ static void test_ft_bzero (void)
 	printf("str[2] = %d\n", str[2]);
 	printf("\n");
 	ft_bzero(str, 3);
-	printf("ft_bzero effectue\n");
+	printf("ft_bzero effectue\n\n");
 	printf("str[0] = %d\n", str[0]);
 	printf("str[1] = %d\n", str[1]);
 	printf("str[2] = %d\n", str[2]);
-	printf("test with null\n");
+	printf("test with null\n\n");
 	ft_bzero(NULL, 5);
-	printf("aucun segfault\n");
 }
 
 static void test_ft_strcat (void)
 {
 	print_prog("ft_strcat");
-	char		toast[7] = "abc";
-	char		chips[4] = "def";
+	char		str1[7] = "abc";
+	char		str2[4] = "def";
 
-	toast[3] = '\0';
-	toast[6] = '\0';
+	str1[3] = '\0';
+	str1[4] = '\0';
 
-	printf("string 1 = %s\n", toast);
-	printf("string 2 = %s\n", chips);
-	printf("  result = %s\n", ft_strcat(toast, chips));
+	printf("chaine 1 = %s\n", str1);
+	printf("chaine 2 = %s\n", str2);
+	printf("resultat = %s\n", ft_strcat(str1, str2));
 }
 
 static void test_ft_isalnum (void)
@@ -135,60 +134,60 @@ static void test_ft_isalnum (void)
 static void test_ft_puts (void)
 {
 	print_prog("ft_puts");
-	ft_puts("foo bar baz");
+	ft_puts("Le texte est la !!");
 }
 
 static void test_ft_strlen(void)
 {
-	char str[6] = "abcde";
-	char str2[2] = "a";
+	//char str[6] = "salut";
+	char str2[6] = "coucou";
 
-	print_prog("ft_puts");
-	printf("str = %s ==> len = %d\n", str, ft_strlen(str));
+	print_prog("ft_strlen");
+	//printf("str = %s ==> len = %d\n", str, ft_strlen(str));
 	printf("str = %s ==> len = %d\n", str2, ft_strlen(str2));
 }
 
 
 static void test_ft_memset(void)
 {
-	char	mems[4];
+	char	str[4];
 
 	print_prog("ft_memset");
-	ft_bzero(mems, 4);
-	printf("str[0] = %d\n", mems[0]);
-	printf("str[1] = %d\n", mems[1]);
-	printf("str[2] = %d\n", mems[2]);
-	printf("str[3] = %d\n", mems[3]);
+	ft_bzero(str, 4);
+	printf("str[0] = %d\n", str[0]);
+	printf("str[1] = %d\n", str[1]);
+	printf("str[2] = %d\n", str[2]);
+	printf("str[3] = %d\n", str[3]);
 	printf("--- memseting with 'a' ---\n");
-	ft_memset(mems, 'a', 4);
-	printf("str[0] = %c (%d)\n", mems[0], mems[0]);
-	printf("str[1] = %c (%d)\n", mems[1], mems[1]);
-	printf("str[2] = %c (%d)\n", mems[2], mems[2]);
-	printf("str[3] = %c (%d)\n", mems[3], mems[3]);
+	ft_memset(str, 'a', 4);
+	printf("str[0] = %c (%d)\n", str[0], str[0]);
+	printf("str[1] = %c (%d)\n", str[1], str[1]);
+	printf("str[2] = %c (%d)\n", str[2], str[2]);
+	printf("str[3] = %c (%d)\n", str[3], str[3]);
 }
 
 static void test_ft_memcpy(void)
 {
-	char	memc1[10]	= "123456789";
-	char	memc2[5]	= "abcd";
+	char	str1[10]	= "123456789";
+	char	str2[5]	= "abcd";
 	int a = 5;
 	int b = 4;
 
 	print_prog("ft_memcpy");
-	printf("str1 = %s\n", memc1);
-	printf("str2 = %s\n", memc2);
+	printf("str1 = %s\n", str1);
+	printf("str2 = %s\n", str2);
 	printf("\n");
-	printf("str1 : %3d %3d %3d %3d %3d\n", memc1[0], memc1[1], memc1[2], memc1[3], memc1[4]);
-	printf("str2 : %3d %3d %3d %3d %3d\n", memc2[0], memc2[1], memc2[2], memc2[3], memc2[4]);
+	printf("str1 : %3d %3d %3d %3d %3d\n", str1[0], str1[1], str1[2], str1[3], str1[4]);
+	printf("str2 : %3d %3d %3d %3d %3d\n", str2[0], str2[1], str2[2], str2[3], str2[4]);
 	printf("\n");
 	printf("--- memcpy str 2 into str 1, on 3 characters ---\n");
 	printf("\n");
-	ft_memcpy(memc1, memc2, 3);
-	printf("str1 = %s\n", memc1);
-	printf("str2 = %s\n", memc2);
+	ft_memcpy(str1, str2, 3);
+	printf("str1 = %s\n", str1);
+	printf("str2 = %s\n", str2);
 	printf("\n");
-	printf("str1 : %3d %3d %3d %3d %3d\n", memc1[0], memc1[1], memc1[2], memc1[3], memc1[4]);
-	printf("str2 : %3d %3d %3d %3d %3d\n", memc2[0], memc2[1], memc2[2], memc2[3], memc2[4]);
+	printf("str1 : %3d %3d %3d %3d %3d\n", str1[0], str1[1], str1[2], str1[3], str1[4]);
+	printf("str2 : %3d %3d %3d %3d %3d\n", str2[0], str2[1], str2[2], str2[3], str2[4]);
 	printf("\n");
 	printf("\n");
 	printf("test with int\n");
@@ -202,40 +201,40 @@ static void test_ft_memcpy(void)
 
 void test_ft_strdup (void)
 {
-	char * tata = strdup("yolo");
-	char * toto = ft_strdup(tata);
-	char * titi = NULL;
+	char * str = strdup("yolo");
+	char * str2 = ft_strdup(str);
+	char * str3 = NULL;
 
 	print_prog("ft_strdup");
-	printf(" original string : [%p] [%s]\n", tata, tata);
-	printf("duplicate string : [%p] [%s]\n", toto, toto);
+	printf("original string : [%p] [%s]\n", str, str);
+	printf("duplicate string : [%p] [%s]\n", str2, str2);
 	printf("test with null :\n");
-	printf("titi = %s\n", titi);
-	titi = ft_strdup(NULL);
-	printf("titi = %s\n", titi);
+	printf("str3 = %s\n", str3);
+	str3 = ft_strdup(NULL);
+	printf("str3 = %s\n", str3);
 }
 
 void    test_ft_strcpy(void)
 {
-    char    str1[42] = "tamer";
-    char    str2[42] = "baba au whum";
+    char    str1[42] = "salut !";
+    char    str2[42] = "je m'apelle davy !";
 
 	print_prog("ft_strcpy");
     printf("s1: %s\n", str1);
     printf("s2: %s\n", str2);
-    printf("~>[_ft_strcpy]: %s\n", ft_strcpy(str1, str2));
-    printf("----->[strcpy]: %s\n", strcpy(str1, str2));
+	printf("strcpy: %s\n", strcpy(str1, str2));
+    printf("ft_strcpy: %s\n", ft_strcpy(str1, str2));
 }
 
 static void    test_ft_strchr(void)
 {
-    char    s[42]= "baba au whum";
+    char    s[42]= "je m'apelle davy !";
 
-	print_prog("ft_strcpy");
-    printf("s: %s\tc: %c\n", s, 'w');
-    printf("~>[_ft_strchr]: %s\n", ft_strchr(s, 'w'));
-    printf("s: %s\tc: %c\n", "asm 64 bits", 'w');
-    printf("~>[_ft_strchr]: %s\n", ft_strchr("asm 64 bits", 'w'));
+	print_prog("ft_strchr");
+    printf("s: %s\tc: %c\n", s, 'p');
+    printf("ft_strchr: %s\n", ft_strchr(s, 'p'));
+    printf("s: %s\tc: %c\n", "salut toi !", 'p');
+    printf("ft_strchr: %s\n", ft_strchr("salut toi !", 'p'));
 }
 
 static void test_ft_isupper(void)
