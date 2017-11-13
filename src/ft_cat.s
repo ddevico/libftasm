@@ -6,7 +6,7 @@
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/04/13 23:39:14 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/13 10:35:36 by davydevico       ###   ########.fr        ;
+;    Updated: 2017/11/13 10:50:01 by davydevico       ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -40,7 +40,6 @@ read:
 	mov r11, rax ; save nb of byte readed
 print:
 	mov rdi, STDOUT
-	lea rsi, [rel buffer]
 	mov rdx, r11
 	mov rax, SYSC(WRITE)
 	syscall
