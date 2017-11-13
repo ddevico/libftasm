@@ -6,20 +6,19 @@
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/04/13 23:39:14 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/10 11:15:04 by davydevico       ###   ########.fr        ;
+;    Updated: 2017/11/13 10:35:36 by davydevico       ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-%define	SYSC(nb)			0x2000000 | nb
-%define	READ				3
-%define WRITE				4
+%define SYSC(nb)	0x2000000 | nb
+%define STDOUT			1
+%define READ			3
+%define WRITE			4
 
 global _ft_cat
 
-extern _ft_strlen
-
 section .data
-	buffer db 0
+	buffer: times 4096 db 0
 	bufsize equ $ - buffer
 
 section .text
@@ -27,29 +26,28 @@ section .text
 _ft_cat:
 	push rbp
 	mov rbp, rsp
-	push rdi
+	mov r12, rdi ; save fd
+
+read:
+	mov rdi, r12
 	lea rsi, [rel buffer]
 	mov rdx, bufsize
-	mov rax, SYSC(READ) ; put rax to `read` sys call
+	mov rax, SYSC(READ)
 	syscall
-	jc err
+	jc error
 	cmp rax, 0
-	je end
-
+	jle error
+	mov r11, rax ; save nb of byte readed
 print:
-	mov rdi, 1
-	mov rdx, rax ; size to write
-	mov rax, SYSC(WRITE) ; put rax to `write` sys call
-	syscall ; WRITE
-	jc err
-	pop rdi ; recuperate fd
-	jmp _ft_cat ; loop
+	mov rdi, STDOUT
+	lea rsi, [rel buffer]
+	mov rdx, r11
+	mov rax, SYSC(WRITE)
+	syscall
+	jc error
+	jmp read
 
-err:
-	pop rdi
-	leave
-	mov rax, 1
-
-end:
+error:
+	mov rax, 0
 	leave
 	ret

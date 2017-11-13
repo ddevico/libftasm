@@ -6,14 +6,18 @@
 /*   By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 15:13:31 by ddevico           #+#    #+#             */
-/*   Updated: 2017/11/12 16:06:24 by davydevico       ###   ########.fr       */
+/*   Updated: 2017/11/13 10:41:39 by davydevico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <assert.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include "libftasm.h"
 
 static void print_prog (char * str)
@@ -147,59 +151,33 @@ static void test_ft_strlen(void)
 	printf("str = %s ==> len = %d\n", str2, ft_strlen(str2));
 }
 
-
 static void test_ft_memset(void)
 {
-	char	str[4];
+	char *str = malloc(10);
+	char *str2 = malloc(10);
 
 	print_prog("ft_memset");
-	ft_bzero(str, 4);
-	printf("str[0] = %d\n", str[0]);
-	printf("str[1] = %d\n", str[1]);
-	printf("str[2] = %d\n", str[2]);
-	printf("str[3] = %d\n", str[3]);
-	printf("--- memseting with 'a' ---\n");
-	ft_memset(str, 'a', 4);
-	printf("str[0] = %c (%d)\n", str[0], str[0]);
-	printf("str[1] = %c (%d)\n", str[1], str[1]);
-	printf("str[2] = %c (%d)\n", str[2], str[2]);
-	printf("str[3] = %c (%d)\n", str[3], str[3]);
+	ft_memset(str, 'a', 10);
+	printf("Premier memset: %s\n", str);
+	ft_memset(str2, 'b', 5);
+	printf("Deuxieme memset: %s\n", str2);
 }
 
 static void test_ft_memcpy(void)
 {
-	char	str1[10]	= "123456789";
-	char	str2[5]	= "abcd";
-	int a = 5;
-	int b = 4;
+	const char str[50] = "Born 2 code";
+	char str2[50] = "";
 
 	print_prog("ft_memcpy");
-	printf("str1 = %s\n", str1);
-	printf("str2 = %s\n", str2);
-	printf("\n");
-	printf("str1 : %3d %3d %3d %3d %3d\n", str1[0], str1[1], str1[2], str1[3], str1[4]);
-	printf("str2 : %3d %3d %3d %3d %3d\n", str2[0], str2[1], str2[2], str2[3], str2[4]);
-	printf("\n");
-	printf("--- memcpy str 2 into str 1, on 3 characters ---\n");
-	printf("\n");
-	ft_memcpy(str1, str2, 3);
-	printf("str1 = %s\n", str1);
-	printf("str2 = %s\n", str2);
-	printf("\n");
-	printf("str1 : %3d %3d %3d %3d %3d\n", str1[0], str1[1], str1[2], str1[3], str1[4]);
-	printf("str2 : %3d %3d %3d %3d %3d\n", str2[0], str2[1], str2[2], str2[3], str2[4]);
-	printf("\n");
-	printf("\n");
-	printf("test with int\n");
-	printf("a = %d\n", a);
-	printf("b = %d\n", b);
-	printf("--- memcpy a into b ---\n");
-	ft_memcpy(&b, &a, sizeof(int));
-	printf("a = %d\n", a);
-	printf("b = %d\n", b);
+	ft_memcpy(str2, str, 5);
+	printf("%s\n", str2);
+	ft_memcpy(str2, str, 7);
+	printf("%s\n", str2);
+	ft_memcpy(str2, str, 50);
+	printf("%s\n", str2);
 }
 
-void test_ft_strdup (void)
+static void test_ft_strdup (void)
 {
 	char * str = strdup("yolo");
 	char * str2 = ft_strdup(str);
@@ -214,7 +192,18 @@ void test_ft_strdup (void)
 	printf("str3 = %s\n", str3);
 }
 
-void    test_ft_strcpy(void)
+static void test_ft_cat(void)
+{
+	int fd;
+
+    fd = open("Makefile", O_RDONLY);
+    if (fd < 0)
+        puts("Cannot open file !");
+    ft_cat(fd);
+    close(fd);
+}
+
+static void    test_ft_strcpy(void)
 {
     char    str1[42] = "salut !";
     char    str2[42] = "je m'apelle davy !";
@@ -261,14 +250,14 @@ static void test_ft_putchar(void)
 	ft_putchar('\n');
 }
 
-void test_ft_abs (void)
+static void test_ft_abs (void)
 {
 	print_prog("ft_abs");
 	printf("abs of %d ? ==> %d\n", 10, ft_abs(10));
 	printf("abs of %d ? ==> %d\n", -10, ft_abs(-10));
 }
 
-void test_ft_swap (void)
+static void test_ft_swap (void)
 {
 	int a = 21;
 	int b = 42;
@@ -295,6 +284,7 @@ int		main(void)
 	test_ft_memset();
 	test_ft_memcpy();
 	test_ft_strdup();
+	test_ft_cat();
 	test_ft_strcpy();
 	test_ft_strchr();
 	test_ft_isupper();
