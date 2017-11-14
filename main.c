@@ -6,7 +6,7 @@
 /*   By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 15:13:31 by ddevico           #+#    #+#             */
-/*   Updated: 2017/11/13 10:41:39 by davydevico       ###   ########.fr       */
+/*   Updated: 2017/11/14 14:57:48 by ddevico          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,8 @@ static void test_ft_strlen(void)
 	char str2[6] = "coucou";
 
 	print_prog("ft_strlen");
-	printf("str = %s ==> len = %d\n", str, ft_strlen(str));
-	printf("str = %s ==> len = %d\n", str2, ft_strlen(str2));
+	printf("str = %s ==> len = %zu\n", str, ft_strlen(str));
+	printf("str = %s ==> len = %zu\n", str2, ft_strlen(str2));
 }
 
 static void test_ft_memset(void)
@@ -253,8 +253,12 @@ static void test_ft_putchar(void)
 static void test_ft_abs (void)
 {
 	print_prog("ft_abs");
-	printf("abs of %d ? ==> %d\n", 10, ft_abs(10));
-	printf("abs of %d ? ==> %d\n", -10, ft_abs(-10));
+	printf("ft_abs:\n");
+    printf("0 = %d\n", ft_abs(0));
+    printf("-10 = %d\n", ft_abs(-10));
+    printf("-0 = %d\n", ft_abs(-0));
+    printf("15 = %d\n", ft_abs(15));
+    printf("-123 = %d\n", ft_abs(-123));
 }
 
 static void test_ft_swap (void)
@@ -292,4 +296,5 @@ int		main(void)
 	test_ft_putchar();
 	test_ft_abs();
 	test_ft_swap();
+	return (0);
 }

@@ -6,7 +6,7 @@
 ;    By: ddevico <ddevico@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2017/11/05 19:39:39 by ddevico           #+#    #+#              ;
-;    Updated: 2017/11/10 11:20:34 by davydevico       ###   ########.fr        ;
+;    Updated: 2017/11/14 09:53:02 by ddevico          ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -25,12 +25,12 @@ _ft_puts:
 	xor rcx, rcx
 	mov rbx, rdi
 
-_begin_loop:
+loop:
 	cmp BYTE [rbx], 0
 	je print
 	inc rbx
 	inc rcx
-	jmp _begin_loop
+	jmp loop
 
 print:
 	mov rsi, rdi ; message
